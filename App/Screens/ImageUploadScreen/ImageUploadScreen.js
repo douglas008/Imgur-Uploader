@@ -11,7 +11,7 @@ import {
 import ImagePicker from 'react-native-image-crop-picker';
 //import { connect } from 'react-redux'
 import Button from '../../Components/Button';
-//import NavHeader from '../../Components/NavHeader';
+import NavHeader from '../../Components/NavHeader';
 import FloatingLabelInput from '../../Components/FloatingLabelInput';
 import { Images } from '../../Themes';
 
@@ -79,21 +79,17 @@ class ImageUploadScreen extends Component {
     // this.props.postImage(this.state.image);
   }
 
-  //   <NavHeader
-  //   title={'SELECT IMAGE'}
-  //   navigation={this.props.navigation}
-  //   style={styles.navHeader}
-  //   rightImage={Images.menuIcons.addPhoto}
-  //   rightImagePress={this.openCamera()}
-  // />
-
-  // <FloatingLabelInput containerStyle={styles.label} label={"Title"} />
-  // <FloatingLabelInput containerStyle={styles.label} label={"Discription"} />
-
   render() {
     console.log(this.state);
     return (
       <View style={styles.mainContainer}>
+        <NavHeader
+          title={'SELECT IMAGE'}
+          navigation={this.props.navigation}
+          style={styles.navHeader}
+          rightImage={Images.menuIcons.addPhoto}
+          rightImagePress={this.openCamera()}
+        />
         <ScrollView style={styles.container}>
           <View>
             {this.renderImage()}

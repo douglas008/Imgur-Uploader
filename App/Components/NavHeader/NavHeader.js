@@ -3,9 +3,7 @@ import { View, TouchableHighlight, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import ScalableText from 'react-native-text';
 import styles from './styles';
-import { Images } from '../../Themes';
-import CircleImageButton from '../../Components/CircleImageButton';
-import { Colors } from '../../Themes';
+import { Images, Colors } from '../../Themes';
 
 const propTypes = {
   navigation: PropTypes.object.isRequired,
@@ -30,7 +28,7 @@ class NavHeader extends React.Component {
         </View>
       );
     }
-    return (<View />)
+    return (<View />);
   }
 
   render() {
