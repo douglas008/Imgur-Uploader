@@ -9,14 +9,27 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import ImagePicker from 'react-native-image-crop-picker';
-//import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Button from '../../Components/Button';
 import NavHeader from '../../Components/NavHeader';
 import FloatingLabelInput from '../../Components/FloatingLabelInput';
+import Spinner from '../../Components/Spinner';
 import { Images } from '../../Themes';
+import { uploadImage } from '../../Redux/Actions';
 
 // Styles
 import styles from './styles'
+
+const propTypes = {
+  loading: PropTypes.bool,
+  error: PropTypes.string
+};
+
+const defaultProps = {
+  loading: false,
+  error: null
+};
 
 class ImageUploadScreen extends Component {
 
@@ -24,8 +37,6 @@ class ImageUploadScreen extends Component {
     super(props);
 
     this.state = {
-      loading: false,
-      success: null,
       image: Images.addImagePlaceholder
     };
   }
@@ -42,14 +53,14 @@ class ImageUploadScreen extends Component {
   }
 
   openCamera() {
-    ImagePicker.openCamera({
-      width: 1080,
-      height: 1080,
-      cropping: true
-    }).then(image => {
-      console.log(image);
-      this.setState({ ...this.state, image: { uri: image.path } });
-    });
+    // ImagePicker.openCamera({
+    //   width: 1080,
+    //   height: 1080,
+    //   cropping: true
+    // }).then(image => {
+    //   console.log(image);
+    //   this.setState({ ...this.state, image: { uri: image.path } });
+    // });
   }
 
   // opacity on ios and native ripple effect on android
@@ -76,7 +87,14 @@ class ImageUploadScreen extends Component {
 
   doUpload() {
     console.log("Upload Tapped");
-    // this.props.postImage(this.state.image);
+    this.props.uploadImage(this.state.image);
+  }
+
+  renderSpinner() {
+    if (this.props.loading) {
+      return <Spinner />
+    }
+    return <View />
   }
 
   render() {
@@ -90,6 +108,7 @@ class ImageUploadScreen extends Component {
           rightImage={Images.menuIcons.addPhoto}
           rightImagePress={this.openCamera()}
         />
+        {this.renderSpinner()}
         <ScrollView style={styles.container}>
           <View>
             {this.renderImage()}
@@ -103,20 +122,15 @@ class ImageUploadScreen extends Component {
   }
 }
 
-// const mapStateToProps = state => {
-//   const data = state.imagesReducer;
-//   console.log('mapStateToProps: images -> ', data);
-//   return {
-//     loading: data.loading,
-//     success: data.success,
-//   };
-// };
+const mapStateToProps = state => {
+  const data = state.imagesReducer;
+  console.log('mapStateToProps: images -> ', data);
+  return {
+    loading: data.loading,
+    error: data.error,
+  };
+};
 
-// const mapDispatchToProps = dispatch => ({
-//   postImage: (image) =>
-//     dispatch(ImagesActions.postImage(image))
-// });
 
-// export default connect(mapStateToProps, mapDispatchToProps)(ImageUploadScreen)
+export default connect(mapStateToProps, { uploadImage })(ImageUploadScreen)
 
-export default ImageUploadScreen;

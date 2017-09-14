@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-//import { Provider } from 'react-redux';
+import { Provider } from 'react-redux';
 import RootContainer from './RootContainer';
-//import createStore from '../Redux';
-// import '../Config';
-// import DebugConfig from '../Config/DebugConfig';
-
-// Create our store
-//const store = createStore();
+import ReduxThunk from 'redux-thunk';
+import { createStore, applyMiddleware } from 'redux';
+import reducers from '../Redux/Reducers';
 
 /**
  * Provides an entry point into our application.  Both index.ios.js and index.android.js
@@ -18,14 +15,14 @@ import RootContainer from './RootContainer';
  * We separate like this to play nice with React Native's hot reloading.
  */
 
-// <Provider store={store}>
-// <RootContainer />
-// </Provider>
-
 class App extends Component {
-  render () {
+  // Create our store
+  render() {
+    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
     return (
+      <Provider store={store}>
         <RootContainer />
+      </Provider>
     );
   }
 }
