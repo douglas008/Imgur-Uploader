@@ -25,10 +25,10 @@ const uploadFailed = (dispatch) => {
     });
 };
 
-const requestImagesSuccess = (dispatch, Images) => {
+const requestImagesSuccess = (dispatch, images) => {
     dispatch({
         type: REQUEST_IMAGES_SUCCESS,
-        payload: Images
+        payload: images
     });
 };
 
@@ -40,8 +40,9 @@ const requestImagesFailed = (dispatch) => {
 
 export const requestImages = () => (dispatch) => {
     dispatch({ type: REQUEST_IMAGES });
-    axios.get(REQUEST_IMAGES_API)
+    axios.get(REQUEST_IMAGES_API, { 'headers': { 'Authorization': AUTH } })
         .then(response => {
+            console.log(response);
             requestImagesSuccess(dispatch, response.data);
         }).catch(() => requestImagesFailed(dispatch));
 };

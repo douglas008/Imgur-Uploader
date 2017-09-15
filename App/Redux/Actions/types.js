@@ -5,9 +5,9 @@ export const UPLOAD_IMAGE = 'upload_image';
 export const UPLOAD_IMAGE_API = 'https://api.imgur.com/3/image';
 
 // Request Images contsants
-export const REQUEST_IMAGES = 'request_image';
-export const REQUEST_IMAGES_FAILED = 'request_image';
-export const REQUEST_IMAGES_SUCCESS = 'request_image';
+export const REQUEST_IMAGES = 'request_images';
+export const REQUEST_IMAGES_FAILED = 'request_images_failed';
+export const REQUEST_IMAGES_SUCCESS = 'request_images_success';
 export const REQUEST_IMAGES_API = 'https://api.imgur.com/3/account/me/images';
 
 // Authorization for imgur account 

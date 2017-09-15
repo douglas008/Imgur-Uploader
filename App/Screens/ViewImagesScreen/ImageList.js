@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ScrollView } from 'react-native';
 import { connect } from 'react-redux';
-//import { requestImages } from '../../actions';
+import { requestImages } from '../../Redux/Actions';
 import ImageItem from './ImageItem';
 //import { Spinner } from '../common';
 import styles from './styles';
@@ -9,7 +9,7 @@ import styles from './styles';
 class ImageList extends Component {
 
     componentWillMount() {
-        // this.props.requestImages();
+        this.props.requestImages();
         // console.log('component will mount');
         // console.log(this.props.Images);
     }
@@ -30,6 +30,7 @@ class ImageList extends Component {
     }
 
     render() {
+        console.log(this.props.images);
         return (
             <ScrollView style={styles.container} >
                 {this.renderListView()}
@@ -38,14 +39,14 @@ class ImageList extends Component {
     }
 }
 
-// const mapStateToProps = state => {
-//     const { Images, loading, error } = state.ImageData;
-//     return {
-//         Images,
-//         loading,
-//         error
-//     };
-// };
+const mapStateToProps = state => {
+    const data = state.imagesReducer;
+    console.log('mapStateToProps: images -> ', data);
+    return {
+        loading: data.loading,
+        error: data.error,
+    };
+};
 
-//export default connect(mapStateToProps, { requestImages })(ImageList);
-export default ImageList;
+export default connect(mapStateToProps, { requestImages })(ImageList);
+//export default ImageList;

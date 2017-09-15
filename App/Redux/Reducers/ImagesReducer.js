@@ -9,7 +9,6 @@ import {
 
 const INITIAL_STATE = {
     images: [],
-    image: {},
     error: null,
     loading: false
 };
@@ -31,10 +30,10 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, loading: true };
 
         case REQUEST_IMAGES_SUCCESS:
-            return { ...state, loading: false, error: null };
+            return { ...state, loading: false, images: action.payload, error: null };
 
         case REQUEST_IMAGES_FAILED:
-            return { ...state, loading: false, error: 'Uploading image failed' };
+            return { ...state, loading: false, error: 'Request images failed' };
 
         default:
             return state;
