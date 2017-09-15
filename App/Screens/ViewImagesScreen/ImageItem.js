@@ -32,10 +32,9 @@ class ImageItem extends Component {
         // just before component mounts
     }
 
-    renderTitleDiscription() {
+    renderDeleteButton() {
         return (
-            //reference to javascript variable must be wrapped in {}
-            <Text style={{ color: 'white' }}>This is some text</Text>
+            <Text style={{ color: 'red' }}>Delete</Text>
         );
     }
 
@@ -55,7 +54,6 @@ class ImageItem extends Component {
             <Card containerStyle={styles.card}>
                 <View>
                     {this.renderImage()}
-                    {this.renderTitleDiscription()}
                 </View>
             </Card>
         );
@@ -73,5 +71,4 @@ class ImageItem extends Component {
 // it will return an action that gets sent off to all the reducers in this application.
 //export default connect(mapStateToProps, actions)(ImageItem);
 export default ImageItem;
-// actions in connect are automatically dispatched to the redux store
-// and returns the data as props to FaqItem
+

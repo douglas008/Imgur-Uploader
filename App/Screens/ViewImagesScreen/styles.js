@@ -14,7 +14,7 @@ export default StyleSheet.create({
         backgroundColor: Colors.backgroundColor,
         justifyContent: 'center',
         alignItems: 'center',
-        borderBottomColor: Colors.accent,
+        borderBottomColor: Colors.transparent,
     },
     card: {
         backgroundColor: Colors.backgroundColor,
