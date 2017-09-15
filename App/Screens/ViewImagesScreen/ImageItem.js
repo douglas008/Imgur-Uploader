@@ -5,13 +5,28 @@ import {
     View,
     Image
 } from 'react-native';
+import PropTypes from 'prop-types';
 //import { connect } from 'react-redux';
 import CardItem from '../../Components/CardItem';
 import Card from '../../Components/Card';
 //import * as actions from '../../actions';
 import styles from './styles';
 
+const propTypes = {
+    loading: PropTypes.bool,
+    error: PropTypes.string
+};
+
+const defaultProps = {
+    loading: false,
+    error: null,
+
+};
+
 class ImageItem extends Component {
+    constructor(props) {
+        super(props);
+    }
 
     componentWillUpdate() {
         // just before component mounts
@@ -29,7 +44,7 @@ class ImageItem extends Component {
             <CardItem containerStyle={styles.cardItem}>
                 <Image
                     style={styles.image}
-                    source={{ uri: 'https://i.imgur.com/fL8sC0W.jpg' }}
+                    source={{ uri: this.props.item.link }}
                 />
             </CardItem>
         );

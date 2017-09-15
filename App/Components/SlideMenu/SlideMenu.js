@@ -80,7 +80,7 @@ class SlideMenu extends React.Component {
   render () {
     return (
       <View style={styles.container}>
-        <Image style={styles.menuImg} source={Images.hyveLogo} />
+        <Image style={styles.menuImg} source={Images.upload} />
         {this.props.navigation.state.routes.map((route, index) => (
           <TouchableHighlight
             onPress={() => (this.doNavigation(route.routeName))}

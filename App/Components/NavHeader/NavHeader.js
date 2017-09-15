@@ -23,9 +23,9 @@ class NavHeader extends React.Component {
   renderRightImageButton() {
     if (this.props.rightImage) {
       return (
-        <View style={styles.btnTopRight}>
-          <Image onPress={this.props.rightImagePress} style={styles.rightImage} source={this.props.rightImage} />
-        </View>
+        <TouchableHighlight onPress={() => this.props.rightImagePress()} style={styles.btnTopRight}>
+          <Image style={styles.rightImage} source={this.props.rightImage} />
+        </TouchableHighlight>
       );
     }
     return (<View />);

@@ -15,10 +15,9 @@ import Button from '../../Components/Button';
 import NavHeader from '../../Components/NavHeader';
 import FloatingLabelInput from '../../Components/FloatingLabelInput';
 import Spinner from '../../Components/Spinner';
-import { Images } from '../../Themes';
+import { Images, Colors } from '../../Themes';
 import { uploadImage } from '../../Redux/Actions';
-
-// Styles
+import Snackbar from '../../Components/Snackbar';
 import styles from './styles'
 
 const propTypes = {
@@ -28,7 +27,8 @@ const propTypes = {
 
 const defaultProps = {
   loading: false,
-  error: null
+  error: null,
+  showSnackbar: false,
 };
 
 class ImageUploadScreen extends Component {
@@ -42,25 +42,32 @@ class ImageUploadScreen extends Component {
   }
 
   openImagePicker() {
-    ImagePicker.openPicker({
-      width: 1080,
-      height: 1080,
-      cropping: true
-    }).then(image => {
-      console.log(image);
-      this.setState({ ...this.state, image: { uri: image.path } });
-    });
+    if (!this.props.loading) {
+      ImagePicker.openPicker({
+        width: 1080,
+        height: 1080,
+        cropping: true
+      }).then(image => {
+        console.log(image);
+        this.setState({ ...this.state, image: { uri: image.path } });
+      }).catch(error => {
+        console.log(error);
+      });
+    }
   }
 
   openCamera() {
-    // ImagePicker.openCamera({
-    //   width: 1080,
-    //   height: 1080,
-    //   cropping: true
-    // }).then(image => {
-    //   console.log(image);
-    //   this.setState({ ...this.state, image: { uri: image.path } });
-    // });
+    if (!this.props.loading) {
+      ImagePicker.openCamera({
+        width: 1080,
+        height: 1080,
+        cropping: true
+      }).then(image => {
+        console.log(image);
+        this.setState({ ...this.state, image: { uri: image.path } });
+      });
+      console.log("camera pressed");
+    }
   }
 
   // opacity on ios and native ripple effect on android
@@ -87,18 +94,45 @@ class ImageUploadScreen extends Component {
 
   doUpload() {
     console.log("Upload Tapped");
-    this.props.uploadImage(this.state.image);
+    if (!this.props.loading) {
+      this.props.uploadImage(this.state.image);
+    }
   }
 
   renderSpinner() {
     if (this.props.loading) {
+      this.props.showSnackbar = true;
       return <Spinner />
     }
     return <View />
   }
 
+  renderSnackbar() {
+    if (this.props.showSnackbar && !this.props.loading) {
+      // reset show snackbar value
+      this.props.showSnackbar = false;
+      if (this.props.error) {
+        return (
+          <Snackbar
+            timeout={1000}
+            actionText={"Upload"}
+            messageText={"Image uploaded failed"}
+            backgroundColor={Colors.error}
+            visible={true} />
+        );
+      }
+      return (
+        <Snackbar
+          timeout={1000}
+          actionText={"Upload"}
+          messageText={"Image uploaded successfully"}
+          backgroundColor={Colors.accent}
+          visible={true} />
+      );
+    }
+  }
+
   render() {
-    console.log(this.state);
     return (
       <View style={styles.mainContainer}>
         <NavHeader
@@ -106,9 +140,10 @@ class ImageUploadScreen extends Component {
           navigation={this.props.navigation}
           style={styles.navHeader}
           rightImage={Images.menuIcons.addPhoto}
-          rightImagePress={this.openCamera()}
+          rightImagePress={() => this.openCamera()}
         />
         {this.renderSpinner()}
+        {this.renderSnackbar()}
         <ScrollView style={styles.container}>
           <View>
             {this.renderImage()}
@@ -132,5 +167,5 @@ const mapStateToProps = state => {
 };
 
 
-export default connect(mapStateToProps, { uploadImage })(ImageUploadScreen)
+export default connect(mapStateToProps, { uploadImage })(ImageUploadScreen);
 

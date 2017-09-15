@@ -13,7 +13,7 @@ export default StyleSheet.create({
     width: null,
     height: 124,
     resizeMode: 'contain',
-    tintColor: Colors.iconColor
+    tintColor: Colors.accent
   },
 
   btn: {

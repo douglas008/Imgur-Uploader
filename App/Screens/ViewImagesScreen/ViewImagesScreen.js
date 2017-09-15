@@ -11,7 +11,7 @@ import styles from './styles';
 class ViewImagesScreen extends Component {
     render() {
         return (
-            <View style={styles.container}>
+            <View style={styles.mainContainer}>
                 <NavHeader
                     title={'MY IMAGES'}
                     navigation={this.props.navigation}

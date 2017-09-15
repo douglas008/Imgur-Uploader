@@ -18,6 +18,7 @@ const images = {
   micIcon: require('../Images/Icons/ic_mic.png'),
   messengerIcon: require('../Images/Icons/ic_messenger.png'),
   addImagePlaceholder: require('../Images/add_image_placeholder.png'),
+  upload: require('../Images/upload.png'),
 
   // Existing Icons - TODO: Remove unused
   hyveLogo: require('../Images/hyve_logo.png'),

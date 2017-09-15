@@ -19,5 +19,9 @@ export default StyleSheet.create({
     card: {
         backgroundColor: Colors.backgroundColor,
         borderColor: Colors.accent,
+    },
+    bottomSpace: {
+        backgroundColor: Colors.backgroundColor,
+        height: 20
     }
 });

@@ -1,32 +1,46 @@
 import React, { Component } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { requestImages } from '../../Redux/Actions';
 import ImageItem from './ImageItem';
-//import { Spinner } from '../common';
+import Spinner from '../../Components/Spinner';
 import styles from './styles';
+
+const propTypes = {
+    loading: PropTypes.bool,
+    error: PropTypes.string,
+    images: PropTypes.array
+};
+
+const defaultProps = {
+    loading: true,
+    error: null,
+    images: []
+};
 
 class ImageList extends Component {
 
+    constructor(props) {
+        super(props);
+    }
+
     componentWillMount() {
         this.props.requestImages();
-        // console.log('component will mount');
-        // console.log(this.props.Images);
     }
 
     renderListView() {
-        // console.log('renderListView');
-        // const list = { ImageList: this.props.Images };
-        // console.log(list.Images);
+        console.log('renderListView: this.props.images', this.props.images);
 
-        // if (this.props.loading) {
-        //     return <Spinner />;
-        // }
+        if (this.props.loading) {
+            return <Spinner />;
+        }
 
-        // return list.ImageList.map(item =>
-        //     <ImageItem key={item.question} item={item} />);
-
-        return (<ImageItem />);
+        if (this.props.images) {
+            return this.props.images.map(item =>
+                <ImageItem key={item.id} item={item} />);
+        }
+        return <View />;
     }
 
     render() {
@@ -45,8 +59,8 @@ const mapStateToProps = state => {
     return {
         loading: data.loading,
         error: data.error,
+        images: data.images.data
     };
 };
 
 export default connect(mapStateToProps, { requestImages })(ImageList);
-//export default ImageList;

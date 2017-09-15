@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import styles from './styles';
 import PropTypes from 'prop-types';
+import { Colors } from '../../Themes'
 
 const propTypes = {
   containerStyle: ViewPropTypes.style,
