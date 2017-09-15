@@ -147,8 +147,6 @@ class ImageUploadScreen extends Component {
         <ScrollView style={styles.container}>
           <View>
             {this.renderImage()}
-            <FloatingLabelInput containerStyle={styles.label} label={"Title"} />
-            <FloatingLabelInput containerStyle={styles.label} label={"Discription"} />
             <Button text={"UPLOAD"} onPress={() => this.doUpload()} />
           </View>
         </ScrollView>
