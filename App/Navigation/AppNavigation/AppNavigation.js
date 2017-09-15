@@ -1,6 +1,5 @@
 import React from 'react';
 import { StackNavigator } from 'react-navigation';
-//import LoginScreen from '../../Screens/LoginScreen';
 import Drawer from '../Drawer';
 import styles from './styles';
 
@@ -10,10 +9,9 @@ import styles from './styles';
 // Manifest of possible screens
 const AppNavigation = StackNavigator(
   {
-    // LoginScreen: { screen: LoginScreen },
     // Passes this stack navigation down to child(Drawer) navigator
-    // so that on logout this parent navigator can be called
-    // to navigate back to the login screen
+    // so that if we have logout this parent navigator can be called
+    // to navigate back to the login screen with out the drawer being avaliable
     Drawer: { screen: ({ navigation }) => <Drawer screenProps={{ rootNavigation: navigation }} /> }
   },
   {

@@ -6,7 +6,6 @@ export default StyleSheet.create({
     borderWidth: 1,
     borderRadius: Metrics.radius.medium,
     borderColor: Colors.cardBorder,
-    borderBottomWidth: 0,
     shadowColor: Colors.cardShadow,
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.1,

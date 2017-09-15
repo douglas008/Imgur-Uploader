@@ -3,7 +3,7 @@ const colors = {
   primaryDark: '#2a2425',
   primary: '#352e2f',
   primaryLight: '#4d4445',
-  accent: '#F15A31',
+  accent: '#1BB76E',
   appBackgroundColor: '#352e2f',
   iconColor: '#FB5f26',
   slideMenuActiveTint: '#4d4445', // primary light

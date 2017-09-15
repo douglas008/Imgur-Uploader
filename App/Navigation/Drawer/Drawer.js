@@ -1,14 +1,14 @@
 import { DrawerNavigator } from 'react-navigation';
 import SlideMenu from '../../Components/SlideMenu';
-// import LoginScreen from '../../Screens/LoginScreen';
+import ViewImagesScreen from '../../Screens/ViewImagesScreen';
 import ImageUploadScreen from '../../Screens/ImageUploadScreen';
 import { Colors } from '../../Themes';
 
 const Drawer = DrawerNavigator(
   {
-    // Logout: {
-    //   screen: LoginScreen
-    // },
+    'My Images': {
+      screen: ViewImagesScreen
+    },
     'New Image': {
       screen: ImageUploadScreen
     }

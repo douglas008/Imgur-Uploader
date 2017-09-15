@@ -1,7 +1,10 @@
 import {
     UPLOAD_IMAGE_SUCCESS,
     UPLOAD_IMAGE_FAILED,
-    UPLOAD_IMAGE
+    UPLOAD_IMAGE,
+    REQUEST_IMAGES,
+    REQUEST_IMAGES_FAILED,
+    REQUEST_IMAGES_SUCCESS,
 } from '../Actions/types';
 
 const INITIAL_STATE = {
@@ -22,6 +25,15 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, loading: false, error: null };
 
         case UPLOAD_IMAGE_FAILED:
+            return { ...state, loading: false, error: 'Uploading image failed' };
+
+        case REQUEST_IMAGES:
+            return { ...state, loading: true };
+
+        case REQUEST_IMAGES_SUCCESS:
+            return { ...state, loading: false, error: null };
+
+        case REQUEST_IMAGES_FAILED:
             return { ...state, loading: false, error: 'Uploading image failed' };
 
         default:
