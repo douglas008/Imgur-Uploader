@@ -4,13 +4,14 @@ import {
     UPLOAD_IMAGE,
     REQUEST_IMAGES,
     REQUEST_IMAGES_FAILED,
-    REQUEST_IMAGES_SUCCESS,
+    REQUEST_IMAGES_SUCCESS
 } from '../Actions/types';
 
 const INITIAL_STATE = {
     images: [],
     error: null,
-    loading: false
+    loading: false,
+    showSnackbar: false
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -21,10 +22,10 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, loading: true };
 
         case UPLOAD_IMAGE_SUCCESS:
-            return { ...state, loading: false, error: null };
+            return { ...state, loading: false, error: null, showSnackbar: true };
 
         case UPLOAD_IMAGE_FAILED:
-            return { ...state, loading: false, error: 'Uploading image failed' };
+            return { ...state, loading: false, error: 'Uploading image failed', showSnackbar: true };
 
         case REQUEST_IMAGES:
             return { ...state, loading: true };

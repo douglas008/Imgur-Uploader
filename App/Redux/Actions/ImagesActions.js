@@ -42,11 +42,10 @@ export const requestImages = () => (dispatch) => {
     dispatch({ type: REQUEST_IMAGES });
     axios.get(REQUEST_IMAGES_API, { 'headers': { 'Authorization': AUTH } })
         .then(response => {
-            console.log(response);
+            // Dispatch success
             requestImagesSuccess(dispatch, response.data);
-        }).catch(() => requestImagesFailed(dispatch));
+        }).catch(() => requestImagesFailed(dispatch)); // Failed
 };
-
 
 export const uploadImage = (image) => (dispatch) => {
     dispatch({ type: UPLOAD_IMAGE });

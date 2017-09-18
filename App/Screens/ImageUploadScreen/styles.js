@@ -3,6 +3,10 @@ import { ApplicationStyles, Metrics } from '../../Themes/'
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
+  imageContainer: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   image: {
     flex: 1,
     height: 300,
@@ -11,5 +15,9 @@ export default StyleSheet.create({
   },
   label: {
     marginBottom: 10
+  },
+  spinner: {
+    position: 'absolute',
+    flex: 1
   }
 })

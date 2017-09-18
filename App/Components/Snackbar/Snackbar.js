@@ -48,7 +48,7 @@ const durationValues = {
 };
 
 class Snackbar extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       translateValue: new Animated.Value(0),
@@ -56,25 +56,26 @@ class Snackbar extends Component {
     };
   }
 
-  componentDidMount () {
+  componentDidMount() {
     console.log('componentDidMoun snackbar');
     if (this.props.visible) {
       this.state.translateValue.setValue(1);
+      this.startSnackbarTimeout();
     } else {
       this.state.translateValue.setValue(0);
     }
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     this.startSnackbarTimeout();
     this.animateSnackBar(nextProps);
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     TimerMixin.clearTimeout(this.timer);
   }
 
-  animateSnackBar (nextProps) {
+  animateSnackBar(nextProps) {
     if (nextProps.visible) {
       Animated.timing(this.state.translateValue, {
         duration: durationValues.entry,
@@ -90,7 +91,7 @@ class Snackbar extends Component {
     }
   }
 
-  startSnackbarTimeout () {
+  startSnackbarTimeout() {
     // If timeout value is 0 the snackbar will persist
     if (this.props.timeout > 0) {
       // Clear previous timeouts
@@ -109,7 +110,7 @@ class Snackbar extends Component {
     }
   }
 
-  render () {
+  render() {
     return (
       <Animated.View
         style={[
